@@ -56,8 +56,6 @@
     <Compile Include="Enemy.cs" />
     <Compile Include="Engine\AssetManager.cs" />
     <Compile Include="Engine\Atlas.cs" />
-    <Compile Include="Engine\Collision\Body.cs" />
-    <Compile Include="Engine\Collision\GenericCollision.cs" />
     <Compile Include="Engine\Particle.cs" />
     <Compile Include="Engine\ParticleEngine.cs" />
     <Compile Include="Engine\Physics\MonoTinySpace.cs" />

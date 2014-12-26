@@ -3,10 +3,6 @@ Prototype
 
 prototype for new game
 
-uses monogame
-assets courtesy of Elliott Hirsch, and Chris Brown.
+uses monogame/xna 4.0. sprites and tunes courtesy of Elliott Hirsch, and Chris Brown.
 
-x shoots 
-z dodges
-arrows move
-hold space to strafe
+x to shoot, z to dodge, arrows move, hold space to strafe

@@ -1,18 +1,16 @@
 todo for some sort of demo
 
-
 Gameplay:
-
 // CRUCIAL 
 enemies
 -gunz
 -pathfinding
 
-tunez
+tunez/sound effects
 gunz - tweak, refactor particle engine, particle collisions
 
 // LONGER TERM
-ReGIONZ refactor - at some point
+ReGIONZ refactor
 
 // LONGERER...ER TERM
 tweaks and modifications

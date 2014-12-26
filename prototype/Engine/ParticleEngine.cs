@@ -14,15 +14,15 @@ namespace prototype.Engine
         private List<Particle> particles;
         private List<Texture2D> textures;
         private int totalParticles = 5;
-        private TCWorld World;
+        //public TCWorld World;
         public Vector2 emitterLocation { get; set; }
 
-        public ParticleEngine(List<Texture2D> texs, Vector2 loc, TCWorld world)
+        public ParticleEngine(List<Texture2D> texs, Vector2 loc)
         {
             emitterLocation = loc;
             this.textures = texs;
             this.particles = new List<Particle>();
-            World = world;
+           // World = world;
             random = new Random();
         }
 
