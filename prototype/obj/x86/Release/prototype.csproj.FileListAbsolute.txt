@@ -1,0 +1,30 @@
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Release\Content\mrspy1.png
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Release\Content\Soviet Soldier 2.png
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Release\SDL.dll
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Release\Content\bc.bmp
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Release\Content\BIG Compilation.bmp
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Release\Content\Boss_GENERIC.mp3
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Release\Content\circle.png
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Release\Content\collisiontiles.png
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Release\Content\darkorange.png
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Release\Content\diamond.png
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Release\Content\mrspy.bmp
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Release\Content\orange.png
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Release\Content\projectile.bmp
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Release\Content\red.png
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Release\Content\star.png
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Release\Content\test.wav
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Release\Content\ruins.tmx
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Release\Content\desert.tmx
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Release\prototype.exe
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Release\prototype.pdb
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Release\Lidgren.Network.dll
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Release\MonoGame.Framework.dll
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Release\OpenTK.dll
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Release\Tao.Sdl.dll
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Release\TiledSharp.dll
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\obj\x86\Release\prototype.Properties.Resources.resources
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\obj\x86\Release\prototype.csproj.GenerateResource.Cache
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\obj\x86\Release\prototype.exe
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\obj\x86\Release\prototype.pdb
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\obj\x86\Release\prototype.csprojResolveAssemblyReference.cache

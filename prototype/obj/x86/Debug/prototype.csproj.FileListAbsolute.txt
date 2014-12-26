@@ -1,0 +1,30 @@
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\SDL.dll
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\Content\circle.png
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\Content\darkorange.png
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\Content\diamond.png
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\Content\mrspy.bmp
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\Content\orange.png
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\Content\projectile.bmp
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\Content\red.png
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\Content\star.png
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\Content\desert.tmx
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\prototype.exe
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\prototype.pdb
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\Lidgren.Network.dll
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\MonoGame.Framework.dll
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\OpenTK.dll
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\Tao.Sdl.dll
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\obj\x86\Debug\prototype.Properties.Resources.resources
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\obj\x86\Debug\prototype.csproj.GenerateResource.Cache
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\obj\x86\Debug\prototype.exe
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\obj\x86\Debug\prototype.pdb
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\obj\x86\Debug\prototype.csprojResolveAssemblyReference.cache
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\Content\ruins.tmx
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\TiledSharp.dll
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\Content\bc.bmp
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\Content\BIG Compilation.bmp
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\Content\collisiontiles.png
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\Content\Soviet Soldier 2.png
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\Content\mrspy1.png
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\Content\Boss_GENERIC.mp3
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\Content\test.wav
