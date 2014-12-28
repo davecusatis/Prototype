@@ -54,6 +54,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Enemy.cs" />
+    <Compile Include="Engine\AI\Astar.cs" />
     <Compile Include="Engine\AssetManager.cs" />
     <Compile Include="Engine\Atlas.cs" />
     <Compile Include="Engine\Particle.cs" />
