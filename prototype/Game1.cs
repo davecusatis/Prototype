@@ -32,7 +32,6 @@ namespace prototype
         Vector3 camera;
         SpriteBatch spriteBatch;
         Player player;
-        List<Enemy> EnemiesList;
         Region region;
         TCWorld world;
         KeyboardState currentKeyState;
@@ -75,9 +74,6 @@ namespace prototype
         /// </summary>
         protected override void LoadContent()
         {
-            
-            EnemiesList = new List<Enemy>();
-
             List<Texture2D> particleTextures = new List<Texture2D>();
             particleTextures.Add(Content.Load<Texture2D>("red"));
             particleTextures.Add(Content.Load<Texture2D>("darkorange"));
@@ -127,7 +123,21 @@ namespace prototype
             }
             player.Update();
             UpdatePlayer(gameTime);
+            UpdateEnemies(gameTime);
             base.Update(gameTime);
+        }
+
+        private void UpdateEnemies(GameTime gameTime)
+        {
+            // VERY BUDGET STYLE
+            foreach(Enemy e in region.EnemyList)
+            {
+                if(e.EnemyState == State.Idle)
+                {
+                    region.MoveEnemy(e);
+                    e.stepsTraveled++;
+                }
+            }
         }
 
         //TODO refactor
@@ -193,24 +203,6 @@ namespace prototype
             camera.Y = -player.Position.Y + GraphicsDevice.Viewport.Bounds.Height / 2;
             camera.Z = 0;
         }
-
-        //private void UpdateEnemies(GameTime gameTime)
-        //{
-        //    foreach(var enemy in EnemiesList)
-        //    {
-        //        float maxMoveX = 10 * playerMoveSpeed + enemy.Position.X;
-        //        float maxMoveY = 10 * playerMoveSpeed + enemy.Position.Y;
-                
-        //        if(enemy.DirectionFacing == Direction.Up && enemy.Position.Y != maxMoveY)
-        //        {
-        //            region.MoveEnemy(enemy, new Vector2(0.0f, -playerMoveSpeed));
-        //        }
-        //        else if(enemy.DirectionFacing == Direction.Down && enemy.Position.Y != )
-        //        { }
-        //        region.MoveEnemy(enemy, vel);
-        //    }
-        //}
-
 
         /// <summary>
         /// This is called when the game should draw itself.

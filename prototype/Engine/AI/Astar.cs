@@ -228,8 +228,8 @@ namespace prototype.Engine.AI
         public Path ToGoBack;
         public int NumOfIterations = -1;
 
-        public bool Initialized { get { return _NbIterations >= 0; } }
-        public bool SearchStarted { get { return _NbIterations > 0; } }
+        public bool Initialized { get { return NumOfIterations >= 0; } }
+        public bool SearchStarted { get { return NumOfIterations > 0; } }
         public Astar(Graph g)
         {
             G = g;
@@ -256,6 +256,7 @@ namespace prototype.Engine.AI
 
             // TODO: finish implementing 
            // int IndexMin = Open
+            return false;
         }
     }
 }

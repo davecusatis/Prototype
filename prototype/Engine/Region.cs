@@ -152,5 +152,34 @@ namespace prototype.Engine
         {
             World.MoveObject(p, vel);
         }
+
+        // NOTE: i'm going to regret this
+        public void MoveEnemy(Enemy e)
+        {
+            if( e.stepsTraveled < 500)
+            {
+                switch(e.DirectionFacing)
+                {
+                    case Direction.Left:
+                        World.MoveObject(e, new Vector2(-e.EnemyMoveSpeed, 0));
+                        break;
+                    case Direction.Right:
+                        World.MoveObject(e, new Vector2(e.EnemyMoveSpeed, 0));
+                        break;
+                }   
+            }
+            else
+            {
+                e.stepsTraveled = 0;
+                if(e.DirectionFacing == Direction.Left)
+                {
+                    e.DirectionFacing = Direction.Right;
+                }
+                else
+                {
+                    e.DirectionFacing = Direction.Left;
+                }
+            }
+        }
     }
 }

@@ -18,6 +18,50 @@ namespace prototype.Engine.MonoTinySpace
             RectangleList = new List<TCRectangle>();
         }
 
+
+        public void MoveObject(Enemy p, Vector2 velocity)
+        {
+            p.EnemyRect.Position = p.Position;
+            p.EnemyRect.Velocity = velocity;
+            double minT = TIMESTEP;
+            float t = TIMESTEP;
+            Vector2 mvA = new Vector2(0, 0);
+            Vector2 mvB = new Vector2(0, 0);
+            double ttc = 0.0;
+            Vector2 minMV = new Vector2(0, 0);
+            TCRectangle colRect = new TCRectangle();
+
+            while (t > MINESCULE_TIME)
+            {
+
+                minMV = new Vector2(0, 0);
+                minT = t;
+                foreach (var rect in RectangleList)
+                {
+                    if (BoxToBoxCollide(p.EnemyRect, rect, t, ref mvA, ref mvB, ref ttc))
+                    {
+                        if (ttc < minT)
+                        {
+                            colRect = rect;
+                            minT = ttc;
+                            minMV = mvA;
+                        }
+                    }
+                }
+
+                minT -= MINESCULE_TIME;
+                if (minT < 0) minT = 0;
+
+                p.EnemyRect.Position += p.EnemyRect.Velocity * (float)minT;
+                p.EnemyRect.Velocity += minMV;
+
+                t -= (float)minT;
+            }
+
+            p.Position = p.EnemyRect.Position;
+        }
+
+
         /// <summary>
         /// 
         /// </summary>

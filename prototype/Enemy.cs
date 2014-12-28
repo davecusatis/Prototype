@@ -22,8 +22,9 @@ namespace prototype
         public Direction DirectionFacing;
         public int Health;
         public TCRectangle EnemyRect;
-        private State EnemyState;
-        private float EnemyMoveSpeed;
+        public State EnemyState;
+        public int stepsTraveled;
+        public float EnemyMoveSpeed;
 
         public int Width
         {
@@ -46,13 +47,13 @@ namespace prototype
             Position = position;
             EnemyState = State.Idle;
             EnemyRect = new TCRectangle(position, Vector2.Zero, EnemyTexture.Width, EnemyTexture.Height, 1);
-
+            DirectionFacing = Direction.Left;
             List<Texture2D> particleTextures = new List<Texture2D>();
             particleTextures.Add(Content.Load<Texture2D>("red"));
             particleTextures.Add(Content.Load<Texture2D>("darkorange"));
             particleTextures.Add(Content.Load<Texture2D>("orange"));
             ParticleEngine = new ParticleEngine(particleTextures, new Vector2((float)((13.5f)) * 32, (float)((22.5f)) * 32));
-
+            EnemyMoveSpeed = 20.0f;
 
         }
 
@@ -64,16 +65,6 @@ namespace prototype
         public void Shoot()
         {
             ParticleEngine.Add(ParticleEngine.GenerateNewParticle(DirectionFacing, 0.5f, 70));
-        }
-
-        public void Update()
-        {
-            float maxDist = 10 * EnemyMoveSpeed;
-
-            if(EnemyState == State.Idle)
-            {
-                
-            }
         }
     }
 }
