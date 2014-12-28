@@ -7,13 +7,13 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
+using IrrKlang;
 using TiledSharp;
 using prototype.Engine.MonoTinySpace;
-//using System.Drawing;
-//using TiledMax;
 #endregion
-// washed out kaohs
+
 namespace prototype
 
 {
@@ -41,12 +41,15 @@ namespace prototype
         float playerMoveSpeed;
         float dodgeSpeed;
         float projectileSpeed;
+        ISoundEngine SoundEngine;
         Song song;
         public Game1()
             : base()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            SoundEngine = new ISoundEngine();
+            SoundEngine.Play2D("../../../Content/Boss_GENERIC.mp3");
         }
 
         /// <summary>
@@ -60,11 +63,13 @@ namespace prototype
             // TODO: Add your initialization logic here
             player = new Player();
             world = new TCWorld();
+            //world.AddRect(player.playerRect);
             playerMoveSpeed = 80.0f;
             dodgeSpeed = 10 * playerMoveSpeed;
             projectileSpeed = 15.0f;
             //world = new World(new Vector2(0, 0));
             region = new Region("Demo", new TmxMap("C:\\Users\\David\\Desktop\\Projects\\moblife\\prototype\\prototype\\Content\\demo.tmx"), this.Content, new TCWorld());
+            
             base.Initialize();
         }
 
@@ -84,10 +89,20 @@ namespace prototype
             Vector2 playerPos = new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X, GraphicsDevice.Viewport.TitleSafeArea.Y + GraphicsDevice.Viewport.TitleSafeArea.Height / 2);
             //player.Initialize(Content.Load<Texture2D>("mrspy.bmp"), Content.Load<Texture2D>("red"), playerPos, this.Content);
             player.Initialize(Content.Load<Texture2D>("mrspy1"), Content.Load<Texture2D>("red"), region.PlayerSpawn, this.Content);
-            song = Content.Load<Song>("test.wav");
-            // TODO: use this.Content to load your game content here
-            MediaPlayer.IsRepeating = true;
-            MediaPlayer.Play(song);
+            region.World.AddRect(player.playerRect);
+            SoundEffect song = Content.Load<SoundEffect>("Boss_GENERIC.wav");
+            SoundEffectInstance seInstance = song.CreateInstance();
+            seInstance.IsLooped = true;
+            seInstance.Play();
+            
+           // SongCollection c = new SongCollection();
+           // c.Add(song);
+           // c.Add(song);
+           // c.Add(song);
+           // // TODO: use this.Content to load your game content here
+           //// MediaPlayer.IsRepeating = true; // why the fuck does this not work
+           // //MediaPlayer.Stop();
+           // MediaPlayer.Play(c);
         }
 
        
