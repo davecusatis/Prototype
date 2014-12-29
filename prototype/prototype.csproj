@@ -160,6 +160,9 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\demo.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Content\desert.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

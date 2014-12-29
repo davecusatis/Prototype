@@ -49,7 +49,7 @@ namespace prototype
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             SoundEngine = new ISoundEngine();
-            SoundEngine.Play2D("../../../Content/Boss_GENERIC.mp3");
+            SoundEngine.Play2D("./Content/Boss_GENERIC.mp3");
         }
 
         /// <summary>
@@ -68,7 +68,8 @@ namespace prototype
             dodgeSpeed = 10 * playerMoveSpeed;
             projectileSpeed = 15.0f;
             //world = new World(new Vector2(0, 0));
-            region = new Region("Demo", new TmxMap("C:\\Users\\David\\Desktop\\Projects\\moblife\\prototype\\prototype\\Content\\demo.tmx"), this.Content, new TCWorld());
+            //TmxMap temp = Content.Load<TmxMap>("demo.tmx");
+            region = new Region("Demo", new TmxMap("demo.tmx"), this.Content, new TCWorld());
             
             base.Initialize();
         }
