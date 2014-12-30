@@ -24,7 +24,7 @@ namespace prototype.Engine
         private List<Rectangle> collsionTiles;
         private ContentManager ContentMgr;
         private Dictionary<Vector2, bool> NonWalkableList;
-       // private Player player; // todo fix when i do entitiez, ideally should be in entity list
+        public Player player; // todo fix when i do entitiez, ideally should be in entity list
 
         public TCWorld World;
 
@@ -189,6 +189,16 @@ namespace prototype.Engine
         public void MovePlayer(Player p, Vector2 vel)
         {
             World.MoveObject(p, vel);
+            player = p;
+        }
+
+        public void Reconstruction(Enemy e)
+        {
+            A = new Astar(ConstructGrid());
+            e.Path = A.FindPath(e.Position, player.Position);
+            World.MoveObjectAlongPath(e, ref e.Path);
+            e.EnemyState = State.Idle;
+
         }
 
         // NOTE: i'm going to regret this
@@ -227,10 +237,19 @@ namespace prototype.Engine
                 if(e.Path == null)
                 {
                     A = new Astar(ConstructGrid());
-                    e.Path = A.FindPath(e.Position, PlayerSpawn);
+                    e.Path = A.FindPath(e.Position, player.Position);
                 }
-                
+                else if(e.Path.Count == 0)
+                {
+                    e.EnemyState = State.Idle;
+                    //A = new Astar(ConstructGrid());
+                    e.Path = A.FindPath(e.Position, player.Position);
+                }
+
                 World.MoveObjectAlongPath(e, ref e.Path);
+                Console.Write("Enemy X = {0}, Y = {1}\n", e.Position.X, e.Position.Y);
+                //if(e.Position == e.Path.Peek().Position * 32)
+                //    World.MoveObjectAlongPath(e, ref e.Path);
             }
         }
     }

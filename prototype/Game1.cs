@@ -86,6 +86,7 @@ namespace prototype
             //player.Initialize(Content.Load<Texture2D>("mrspy.bmp"), Content.Load<Texture2D>("red"), playerPos, this.Content);
             player.Initialize(Content.Load<Texture2D>("mrspy1"), Content.Load<Texture2D>("red"), region.PlayerSpawn, this.Content);
             region.World.AddRect(player.playerRect);
+            region.player = player;
             SoundEffect song = Content.Load<SoundEffect>("Boss_GENERIC.wav");
             SoundEffectInstance seInstance = song.CreateInstance();
             seInstance.IsLooped = true;

@@ -24,12 +24,12 @@ namespace prototype.Engine.MonoTinySpace
             if(path.Count > 0)
             {
                 Node next = path.Pop();
-                //float X = next.Position.X - p.Position.X/32;
-                //float Y = (next.Position.Y - p.Position.Y/32);
+                //float X = next.Position.X - p.Position.X / 32;
+                //float Y = (next.Position.Y - p.Position.Y / 32);
                 //Vector2 vel = new Vector2(X * p.EnemyMoveSpeed, Y * p.EnemyMoveSpeed);
 
                 //MoveObject(p, vel);
-                Console.Write("Moving enemy to: X = {0}, Y = {1}\n", next.Position.X, next.Position.Y);
+                //Console.Write("Moving enemy to: X = {0}, Y = {1}\n", p.Position.X, p.Position.Y);
                 p.Position = next.Position * 32;
                 p.EnemyRect.Position = next.Position * 32;
             }
