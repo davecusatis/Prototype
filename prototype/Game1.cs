@@ -9,13 +9,11 @@ using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
-using IrrKlang;
 using TiledSharp;
 using prototype.Engine.MonoTinySpace;
 #endregion
 
 namespace prototype
-
 {
     using Engine;
     public enum Direction
@@ -41,15 +39,13 @@ namespace prototype
         float playerMoveSpeed;
         float dodgeSpeed;
         float projectileSpeed;
-        ISoundEngine SoundEngine;
+        
         Song song;
         public Game1()
             : base()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            SoundEngine = new ISoundEngine();
-            SoundEngine.Play2D("./Content/Boss_GENERIC.mp3");
         }
 
         /// <summary>
@@ -63,12 +59,11 @@ namespace prototype
             // TODO: Add your initialization logic here
             player = new Player();
             world = new TCWorld();
-            //world.AddRect(player.playerRect);
             playerMoveSpeed = 80.0f;
             dodgeSpeed = 10 * playerMoveSpeed;
             projectileSpeed = 15.0f;
-            //world = new World(new Vector2(0, 0));
-            //TmxMap temp = Content.Load<TmxMap>("demo.tmx");
+            
+            //region = new Region("Demo", new TmxMap("../../../Content/demo.tmx"), this.Content, new TCWorld());
             region = new Region("Demo", new TmxMap("demo.tmx"), this.Content, new TCWorld());
             
             base.Initialize();
@@ -95,15 +90,6 @@ namespace prototype
             SoundEffectInstance seInstance = song.CreateInstance();
             seInstance.IsLooped = true;
             seInstance.Play();
-            
-           // SongCollection c = new SongCollection();
-           // c.Add(song);
-           // c.Add(song);
-           // c.Add(song);
-           // // TODO: use this.Content to load your game content here
-           //// MediaPlayer.IsRepeating = true; // why the fuck does this not work
-           // //MediaPlayer.Stop();
-           // MediaPlayer.Play(c);
         }
 
        
@@ -152,6 +138,10 @@ namespace prototype
                 {
                     region.MoveEnemy(e);
                     e.stepsTraveled++;
+                }
+                else if (e.EnemyState == State.Active)
+                {
+                    region.MoveEnemy(e);
                 }
             }
         }
@@ -242,6 +232,7 @@ namespace prototype
             }
 
             spriteBatch.End();
+
             // bulletz
             player.DrawBullets(spriteBatch, camera);
 

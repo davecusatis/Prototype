@@ -28,3 +28,6 @@ C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\
 C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\Content\mrspy1.png
 C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\Content\Boss_GENERIC.mp3
 C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\Content\test.wav
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\Content\Boss_GENERIC.wav
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\Content\demo.tmx
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Debug\irrKlang.NET4.dll

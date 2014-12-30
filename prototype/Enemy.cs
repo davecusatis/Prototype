@@ -7,6 +7,8 @@ using Microsoft.Xna.Framework;
 using prototype.Engine;
 using prototype.Engine.MonoTinySpace;
 using Microsoft.Xna.Framework.Content;
+using prototype.Engine.AI;
+
 namespace prototype
 {
     public enum State
@@ -25,6 +27,7 @@ namespace prototype
         public State EnemyState;
         public int stepsTraveled;
         public float EnemyMoveSpeed;
+        public Stack<Node> Path;
 
         public int Width
         {
@@ -45,7 +48,7 @@ namespace prototype
         {
             EnemyTexture = AssetManager.removeTransparentBG(enemyTexture);
             Position = position;
-            EnemyState = State.Idle;
+            EnemyState = State.Active;
             EnemyRect = new TCRectangle(position, Vector2.Zero, EnemyTexture.Width, EnemyTexture.Height, 1);
             DirectionFacing = Direction.Left;
             List<Texture2D> particleTextures = new List<Texture2D>();

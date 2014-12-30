@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using TiledSharp;
 using prototype.Engine.MonoTinySpace;
+using prototype.Engine.AI;
 
 namespace prototype.Engine
 {
@@ -16,12 +17,13 @@ namespace prototype.Engine
         public Vector2 PlayerSpawn;
         public List<Enemy> EnemyList;
         public List<RegionPortal> RegionPortals;
-        //public Set<Entity> EntitySet;
+        private Astar A;
         private TmxMap TileMap;
         private List<Atlas> Atlases;
         private List<Dictionary<Vector2, Vector3>> AtlasLookUp;
         private List<Rectangle> collsionTiles;
         private ContentManager ContentMgr;
+        private Dictionary<Vector2, bool> NonWalkableList;
        // private Player player; // todo fix when i do entitiez, ideally should be in entity list
 
         public TCWorld World;
@@ -33,6 +35,7 @@ namespace prototype.Engine
             ContentMgr = content;
             World = world;
             collsionTiles = new List<Rectangle>();
+            NonWalkableList = new Dictionary<Vector2, bool>();
             Atlases = processAtlases(map, content);
             AtlasLookUp = processMap(map, Atlases);
             //World = new TCWorld();
@@ -112,12 +115,16 @@ namespace prototype.Engine
                                 }
                                 if (tile.Gid == 1)
                                 {
+                                    // collision tile
                                     World.AddRect(new TCRectangle(
                                         new Vector2((int)tile.X * tilesets[i].ElementWidth, (int)tile.Y * tilesets[i].ElementHeight),
                                         new Vector2(0, 0),
                                         tilesets[i].ElementWidth,
                                         tilesets[i].ElementHeight,
                                         1));
+
+                                    // keep track of collision tiles so when we construct our path finding grid we set walkable = false
+                                    NonWalkableList.Add(new Vector2(tile.X, tile.Y), false);
                                 }
                                 if(tile.Gid == 3)
                                 {
@@ -140,6 +147,8 @@ namespace prototype.Engine
                                     );
                             }
 
+
+
                         }
                     }
                 }
@@ -148,6 +157,35 @@ namespace prototype.Engine
             return lookup;
         }        
         
+
+        private List<List<Node>> ConstructGrid()
+        {
+            List<List<Node>> temp = new List<List<Node>>();
+            bool walkable = false;
+            float tempX = 0;
+            float tempY = 0;
+
+            for(int i = 0; i < TileMap.Width; i++)
+            {
+                temp.Add( new List<Node>());
+                for(int j = 0; j < TileMap.Height; j++)
+                {
+                    if(NonWalkableList.TryGetValue(new Vector2(i, j), out walkable))
+                    {
+                        walkable = false;
+                    }
+                    else
+                    {
+                        walkable = true;
+                    }
+                    temp[i].Add(new Node(new Vector2(i,j), walkable));
+                    tempX += 32;
+                }
+                tempX = 0;
+                tempY += 32;
+            }
+            return temp;
+        }
         public void MovePlayer(Player p, Vector2 vel)
         {
             World.MoveObject(p, vel);
@@ -156,30 +194,46 @@ namespace prototype.Engine
         // NOTE: i'm going to regret this
         public void MoveEnemy(Enemy e)
         {
-            if( e.stepsTraveled < 500)
+            if (e.EnemyState == State.Idle)
             {
-                switch(e.DirectionFacing)
+
+                if (e.stepsTraveled < 500)
                 {
-                    case Direction.Left:
-                        World.MoveObject(e, new Vector2(-e.EnemyMoveSpeed, 0));
-                        break;
-                    case Direction.Right:
-                        World.MoveObject(e, new Vector2(e.EnemyMoveSpeed, 0));
-                        break;
-                }   
-            }
-            else
-            {
-                e.stepsTraveled = 0;
-                if(e.DirectionFacing == Direction.Left)
-                {
-                    e.DirectionFacing = Direction.Right;
+                    switch (e.DirectionFacing)
+                    {
+                        case Direction.Left:
+                            World.MoveObject(e, new Vector2(-e.EnemyMoveSpeed, 0));
+                            break;
+                        case Direction.Right:
+                            World.MoveObject(e, new Vector2(e.EnemyMoveSpeed, 0));
+                            break;
+                    }
                 }
                 else
                 {
-                    e.DirectionFacing = Direction.Left;
+                    e.stepsTraveled = 0;
+                    if (e.DirectionFacing == Direction.Left)
+                    {
+                        e.DirectionFacing = Direction.Right;
+                    }
+                    else
+                    {
+                        e.DirectionFacing = Direction.Left;
+                    }
                 }
+            }
+            else if(e.EnemyState == State.Active)
+            {
+                if(e.Path == null)
+                {
+                    A = new Astar(ConstructGrid());
+                    e.Path = A.FindPath(e.Position, PlayerSpawn);
+                }
+                
+                World.MoveObjectAlongPath(e, ref e.Path);
             }
         }
     }
+
+
 }

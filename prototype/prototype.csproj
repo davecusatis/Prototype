@@ -79,9 +79,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="irrKlang.NET4">
-      <HintPath>dotnet-4\irrKlang.NET4.dll</HintPath>
-    </Reference>
     <Reference Include="OpenTK">
       <HintPath>$(MSBuildExtensionsPath)\..\MonoGame\v3.0\Assemblies\WindowsGL\OpenTK.dll</HintPath>
     </Reference>
