@@ -69,8 +69,8 @@ namespace prototype.Engine.AI
 
         public Stack<Node> FindPath(Vector2 Start, Vector2 End)
         {
-            Node start = new Node(Start/Node.NODE_SIZE, true);
-            Node end = new Node(End/Node.NODE_SIZE, true);
+            Node start = new Node(new Vector2((int)(Start.X/Node.NODE_SIZE), (int) (Start.Y/Node.NODE_SIZE)), true);
+            Node end = new Node(new Vector2((int)(End.X / Node.NODE_SIZE), (int)(End.Y / Node.NODE_SIZE)), true);
 
             Stack<Node> Path = new Stack<Node>();
             List<Node> OpenList = new List<Node>();
@@ -107,7 +107,7 @@ namespace prototype.Engine.AI
             
             // construct path
             Node temp = ClosedList[ClosedList.IndexOf(current)];
-            while(temp != start && temp != null)
+            while(temp.Parent != start && temp != null)
             {
                 Path.Push(temp);
                 temp = temp.Parent;
@@ -124,23 +124,18 @@ namespace prototype.Engine.AI
 
             if(row + 1 < GridRows)
             {
-
-                //temp.Add(Grid[row + 1][col]);
                 temp.Add(Grid[col][row + 1]);
             }
             if(row - 1 >= 0)
             {
-                //temp.Add(Grid[row - 1][col]);
                 temp.Add(Grid[col][row - 1]);
             }
             if(col - 1 >= 0)
             {
-                //temp.Add(Grid[row][col - 1]);
                 temp.Add(Grid[col - 1][row]);
             }
             if(col + 1 < GridCols)
             {
-                //temp.Add(Grid[row][col + 1]);
                 temp.Add(Grid[col + 1][row]);
             }
 

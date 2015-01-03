@@ -194,10 +194,12 @@ namespace prototype.Engine
 
         public void Reconstruction(Enemy e)
         {
-            A = new Astar(ConstructGrid());
+            //A = new Astar(ConstructGrid());
             e.Path = A.FindPath(e.Position, player.Position);
-            World.MoveObjectAlongPath(e, ref e.Path);
-            e.EnemyState = State.Idle;
+            e.EnemyState = State.Active;
+            MoveEnemy(e);
+            //World.MoveObjectAlongPath(e, ref e.Path);
+            //e.EnemyState = State.Idle;
 
         }
 
@@ -237,19 +239,17 @@ namespace prototype.Engine
                 if(e.Path == null)
                 {
                     A = new Astar(ConstructGrid());
+                    e.SearchState = EnemySearchState.Searching;
                     e.Path = A.FindPath(e.Position, player.Position);
                 }
-                else if(e.Path.Count == 0)
+                else if(e.SearchState == EnemySearchState.Alerted)
                 {
-                    e.EnemyState = State.Idle;
-                    //A = new Astar(ConstructGrid());
+                    e.SearchState = EnemySearchState.Searching;
                     e.Path = A.FindPath(e.Position, player.Position);
                 }
 
-                World.MoveObjectAlongPath(e, ref e.Path);
-                Console.Write("Enemy X = {0}, Y = {1}\n", e.Position.X, e.Position.Y);
-                //if(e.Position == e.Path.Peek().Position * 32)
-                //    World.MoveObjectAlongPath(e, ref e.Path);
+                if(e.SearchState != EnemySearchState.Found)
+                    World.MoveObjectAlongPath(e, ref e.Path);
             }
         }
     }

@@ -63,8 +63,8 @@ namespace prototype
             dodgeSpeed = 10 * playerMoveSpeed;
             projectileSpeed = 15.0f;
             
-            //region = new Region("Demo", new TmxMap("../../../Content/demo.tmx"), this.Content, new TCWorld());
-            region = new Region("Demo", new TmxMap("demo.tmx"), this.Content, new TCWorld());
+            region = new Region("Demo", new TmxMap("../../../Content/demo.tmx"), this.Content, new TCWorld());
+            //region = new Region("Demo", new TmxMap("demo.tmx"), this.Content, new TCWorld());
             
             base.Initialize();
         }
@@ -132,19 +132,40 @@ namespace prototype
 
         private void UpdateEnemies(GameTime gameTime)
         {
+            float x, y;
             // VERY BUDGET STYLE
             foreach(Enemy e in region.EnemyList)
             {
+                x = Math.Abs(e.Position.X - player.Position.X);
+                y = Math.Abs(e.Position.Y - player.Position.Y);
+
                 if(e.EnemyState == State.Idle)
                 {
                     region.MoveEnemy(e);
                     e.stepsTraveled++;
                 }
-                else if (e.EnemyState == State.Active)
+                if (e.EnemyState == State.Active && (e.SearchState == EnemySearchState.Alerted || e.SearchState == EnemySearchState.Searching))
                 {
                     region.MoveEnemy(e);
                 }
+                if(x < 100 && y < 100)
+                {
+                    e.Shoot();
+                }
+                if(x < 500 && y < 500 && x > 150 && y > 150 && e.EnemyState == State.Idle)
+                {
+                    e.EnemyState = State.Active;
+                    e.SearchState = EnemySearchState.Alerted;
+                }
+
+                if(e.SearchState == EnemySearchState.Found)
+                {
+                    e.EnemyState = State.Idle;
+                    e.SearchState = EnemySearchState.Searching;
+                }
+                e.Update();
             }
+
         }
 
         //TODO refactor
@@ -209,6 +230,19 @@ namespace prototype
             camera.X = -player.Position.X + GraphicsDevice.Viewport.Bounds.Width / 2;
             camera.Y = -player.Position.Y + GraphicsDevice.Viewport.Bounds.Height / 2;
             camera.Z = 0;
+
+            if(currentKeyState.IsKeyDown(Keys.Q) && !previousKeyState.IsKeyDown(Keys.Q))
+            {
+                foreach(Enemy e in region.EnemyList)
+                {
+                    Console.Write("state = {0}, path = {1}", e.EnemyState, e.Path);
+                    if (e.EnemyState == State.Idle)
+                    {
+                        region.Reconstruction(e);
+                        //e.EnemyState = State.Active;
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -230,15 +264,17 @@ namespace prototype
             foreach (var enemy in region.EnemyList)
             {
                 enemy.Draw(spriteBatch);
+                enemy.DrawBullets(spriteBatch, camera);
             }
 
-            spriteBatch.End();
+           
 
             // bulletz
             player.DrawBullets(spriteBatch, camera);
 
             // fire in the middle of the map
-            particleEngine.Draw(spriteBatch, camera);
+            // particleEngine.Draw(spriteBatch, camera);
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }

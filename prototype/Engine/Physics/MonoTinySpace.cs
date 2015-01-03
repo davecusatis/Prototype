@@ -21,19 +21,57 @@ namespace prototype.Engine.MonoTinySpace
 
         public void MoveObjectAlongPath(Enemy p, ref Stack<Node> path)
         {
-            if(path.Count > 0)
+            // arbitrary - todo: fix
+            if (path.Count > 3)
             {
-                Node next = path.Pop();
-                //float X = next.Position.X - p.Position.X / 32;
-                //float Y = (next.Position.Y - p.Position.Y / 32);
-                //Vector2 vel = new Vector2(X * p.EnemyMoveSpeed, Y * p.EnemyMoveSpeed);
+                Node next;
+                if (p.EnemyState == State.Moseying)
+                {
+                    next = path.Peek();
+                }
+                else
+                {
+                    next = path.Pop();
+                }
 
-                //MoveObject(p, vel);
+                float X = next.Position.X - p.Position.X / Node.NODE_SIZE;
+                float Y = (next.Position.Y - p.Position.Y / Node.NODE_SIZE);
+                Vector2 vel = new Vector2(X, Y);
+
+                if (!(p.Position.X <= (next.Position.X * Node.NODE_SIZE * 1.0001f) && p.Position.Y <= (next.Position.Y * Node.NODE_SIZE * 1.0001f)
+                    && p.Position.X >= (next.Position.X * Node.NODE_SIZE * 0.9999f) && p.Position.Y >= (next.Position.Y * Node.NODE_SIZE * 0.9999f)))
+                {
+                    MoveObject(p, vel);
+                }
+
+                p.Position = next.Position * Node.NODE_SIZE;
+                p.EnemyRect.Position = next.Position * Node.NODE_SIZE;
+
+                if (vel.Y < 0)
+                {
+                    p.DirectionFacing = Direction.Up;
+                }
+                if (vel.X < 0)
+                {
+                    p.DirectionFacing = Direction.Left;
+                }
+                if (vel.Y > 0)
+                {
+                    p.DirectionFacing = Direction.Down;
+                }
+                if (vel.X > 0)
+                {
+                    p.DirectionFacing = Direction.Right;
+                }
+
                 //Console.Write("Moving enemy to: X = {0}, Y = {1}\n", p.Position.X, p.Position.Y);
-                p.Position = next.Position * 32;
-                p.EnemyRect.Position = next.Position * 32;
+                //p.Position = next.Position * 32;
+                //p.EnemyRect.Position = next.Position * 32;
             }
-           
+            else
+            {
+                p.SearchState = EnemySearchState.Found;
+            }
         }
 
         public void MoveObject(Enemy p, Vector2 velocity)

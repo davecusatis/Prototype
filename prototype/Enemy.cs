@@ -13,7 +13,12 @@ namespace prototype
 {
     public enum State
     {
-        Idle, Active
+        Idle, Active, Moseying
+    }
+
+    public enum EnemySearchState
+    {
+        Searching, Found, Alerted
     }
 
     class Enemy
@@ -25,9 +30,11 @@ namespace prototype
         public int Health;
         public TCRectangle EnemyRect;
         public State EnemyState;
+        public EnemySearchState SearchState;
         public int stepsTraveled;
         public float EnemyMoveSpeed;
         public Stack<Node> Path;
+        private static int MAX_BULLETS = 20;
 
         public int Width
         {
@@ -48,7 +55,8 @@ namespace prototype
         {
             EnemyTexture = AssetManager.removeTransparentBG(enemyTexture);
             Position = position;
-            EnemyState = State.Active;
+            EnemyState = State.Idle;
+            SearchState = EnemySearchState.Searching;
             EnemyRect = new TCRectangle(position, Vector2.Zero, EnemyTexture.Width, EnemyTexture.Height, 1);
             DirectionFacing = Direction.Left;
             List<Texture2D> particleTextures = new List<Texture2D>();
@@ -60,14 +68,26 @@ namespace prototype
 
         }
 
+        public void Update()
+        {
+            ParticleEngine.emitterLocation = Position;
+            ParticleEngine.UpdateBullets();
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(EnemyTexture, Position, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         }
 
+        public void DrawBullets(SpriteBatch spriteBatch, Vector3 camera)
+        {
+            ParticleEngine.Draw(spriteBatch, camera);
+        }
+
         public void Shoot()
         {
-            ParticleEngine.Add(ParticleEngine.GenerateNewParticle(DirectionFacing, 0.5f, 70));
+            if(ParticleEngine.ParticleCount < MAX_BULLETS)
+                ParticleEngine.Add(ParticleEngine.GenerateNewParticle(DirectionFacing, 0.5f, 70));
         }
     }
 }

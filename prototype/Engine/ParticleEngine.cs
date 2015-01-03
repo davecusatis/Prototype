@@ -14,6 +14,13 @@ namespace prototype.Engine
         private List<Particle> particles;
         private List<Texture2D> textures;
         private int totalParticles = 5;
+        public int ParticleCount
+        {
+            get
+            {
+                return particles.Count;
+            }
+        }
         //public TCWorld World;
         public Vector2 emitterLocation { get; set; }
 
@@ -119,12 +126,12 @@ namespace prototype.Engine
 
         public void Draw(SpriteBatch spriteBatch, Vector3 camera)
         {
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, null, null, null, null, Matrix.CreateTranslation(camera));
+           // spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, null, null, null, null, Matrix.CreateTranslation(camera));
             for (int i = 0; i < particles.Count; i++)
             {
                 particles[i].Draw(spriteBatch);
             }
-            spriteBatch.End();
+           // spriteBatch.End();
 
         }
     }

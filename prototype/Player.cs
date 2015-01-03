@@ -59,6 +59,7 @@ namespace prototype
 
         public void Shoot()
         {
+            
             particleEngine.Add(particleEngine.GenerateNewParticle(directionFacing, 0.5f, 70));
         }
 
