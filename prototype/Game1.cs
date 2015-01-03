@@ -63,8 +63,8 @@ namespace prototype
             dodgeSpeed = 10 * playerMoveSpeed;
             projectileSpeed = 15.0f;
             
-            region = new Region("Demo", new TmxMap("../../../Content/demo.tmx"), this.Content, new TCWorld());
-            //region = new Region("Demo", new TmxMap("demo.tmx"), this.Content, new TCWorld());
+            //region = new Region("Demo", new TmxMap("../../../Content/demo.tmx"), this.Content, new TCWorld());
+            region = new Region("Demo", new TmxMap("demo.tmx"), this.Content, new TCWorld());
             
             base.Initialize();
         }
@@ -133,7 +133,7 @@ namespace prototype
         private void UpdateEnemies(GameTime gameTime)
         {
             float x, y;
-            // VERY BUDGET STYLE
+            // VERY BUDGET STYLE enemy logic
             foreach(Enemy e in region.EnemyList)
             {
                 x = Math.Abs(e.Position.X - player.Position.X);
@@ -144,14 +144,17 @@ namespace prototype
                     region.MoveEnemy(e);
                     e.stepsTraveled++;
                 }
+
                 if (e.EnemyState == State.Active && (e.SearchState == EnemySearchState.Alerted || e.SearchState == EnemySearchState.Searching))
                 {
                     region.MoveEnemy(e);
                 }
+
                 if(x < 100 && y < 100)
                 {
                     e.Shoot();
                 }
+
                 if(x < 500 && y < 500 && x > 150 && y > 150 && e.EnemyState == State.Idle)
                 {
                     e.EnemyState = State.Active;
@@ -163,6 +166,12 @@ namespace prototype
                     e.EnemyState = State.Idle;
                     e.SearchState = EnemySearchState.Searching;
                 }
+
+                if (e.SearchState == EnemySearchState.Unreachable)
+                {
+                    e.EnemyState = State.Idle;
+                }
+
                 e.Update();
             }
 

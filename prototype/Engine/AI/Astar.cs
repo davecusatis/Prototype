@@ -105,7 +105,13 @@ namespace prototype.Engine.AI
                 }
             }
             
-            // construct path
+            // construct path, if end was not closed return null
+            if(!ClosedList.Exists(x => x.Position == end.Position))
+            {
+                return null;
+            }
+
+            // if all good, return path
             Node temp = ClosedList[ClosedList.IndexOf(current)];
             while(temp.Parent != start && temp != null)
             {

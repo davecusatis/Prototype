@@ -27,6 +27,13 @@ namespace prototype.Engine
         public Player player; // todo fix when i do entitiez, ideally should be in entity list
 
         public TCWorld World;
+        public int WalkableTiles
+        {
+            get
+            {
+                return TileMap.Height * TileMap.Width - NonWalkableList.Count;
+            }
+        }
 
         public Region(string name, TmxMap map, ContentManager content, TCWorld world)
         {
@@ -241,6 +248,10 @@ namespace prototype.Engine
                     A = new Astar(ConstructGrid());
                     e.SearchState = EnemySearchState.Searching;
                     e.Path = A.FindPath(e.Position, player.Position);
+                    if(e.Path == null)
+                    {
+                        e.SearchState = EnemySearchState.Unreachable;
+                    }
                 }
                 else if(e.SearchState == EnemySearchState.Alerted)
                 {
@@ -248,7 +259,7 @@ namespace prototype.Engine
                     e.Path = A.FindPath(e.Position, player.Position);
                 }
 
-                if(e.SearchState != EnemySearchState.Found)
+                if(e.SearchState != EnemySearchState.Found && e.Path != null)
                     World.MoveObjectAlongPath(e, ref e.Path);
             }
         }

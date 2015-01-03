@@ -18,7 +18,7 @@ namespace prototype
 
     public enum EnemySearchState
     {
-        Searching, Found, Alerted
+        Searching, Found, Alerted, Unreachable
     }
 
     class Enemy
