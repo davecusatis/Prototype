@@ -30,3 +30,4 @@ C:\Users\David\Desktop\Projects\moblife\prototype\prototype\obj\x86\Release\prot
 C:\Users\David\Desktop\Projects\moblife\prototype\prototype\obj\x86\Release\prototype.csprojResolveAssemblyReference.cache
 C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Release\Content\Boss_GENERIC.wav
 C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Release\Content\demo.tmx
+C:\Users\David\Desktop\Projects\moblife\prototype\prototype\bin\WindowsGL\Release\Content\mrspy2.png

@@ -25,7 +25,7 @@ namespace prototype.Engine
         private ContentManager ContentMgr;
         private Dictionary<Vector2, bool> NonWalkableList;
         public Player player; // todo fix when i do entitiez, ideally should be in entity list
-
+        private int PlayerAnimationCount = 0;
         public TCWorld World;
         public int WalkableTiles
         {
@@ -197,6 +197,13 @@ namespace prototype.Engine
         {
             World.MoveObject(p, vel);
             player = p;
+            
+            // HOLy SHIT BUDGE - todo fix
+            if (PlayerAnimationCount % p.PlayerAnimation.FrameCtr == 0)
+            {
+                player.UpdateAnimation();
+            }
+            PlayerAnimationCount++;
         }
 
         public void Reconstruction(Enemy e)

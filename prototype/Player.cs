@@ -13,6 +13,7 @@ namespace prototype
     class Player
     {
         public Texture2D PlayerTexture;
+        public AnimatedSprite PlayerAnimation;
         public Vector2 Position;
         public ParticleEngine particleEngine;
         public Direction directionFacing;
@@ -29,7 +30,7 @@ namespace prototype
             get { return PlayerTexture.Height; }
         }
 
-        public void Initialize(Texture2D texture, Texture2D bullet, Vector2 pos, ContentManager content)
+        public void Initialize(Texture2D texture, Texture2D bullet, Vector2 pos, ContentManager content, Texture2D Animation)
         {
             List<Texture2D> bulletList = new List<Texture2D>();
             bulletList.Add(bullet);
@@ -39,6 +40,7 @@ namespace prototype
             particleEngine = new ParticleEngine(bulletList, pos);
             Active = true;
             Health = 100;
+            PlayerAnimation = new AnimatedSprite(AssetManager.removeTransparentBG(Animation), 2, 9);
         }
        
         public void Update()
@@ -49,9 +51,22 @@ namespace prototype
 
         public void Draw(SpriteBatch spriteBatch) 
         {
-            spriteBatch.Draw(PlayerTexture, Position, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            if (directionFacing == Direction.Left || directionFacing == Direction.Up)
+            {
+                PlayerAnimation.Draw(spriteBatch, Position, 0);
+            }
+            if (directionFacing == Direction.Right || directionFacing == Direction.Down)
+            {
+                PlayerAnimation.Draw(spriteBatch, Position, 1);
+            }
+            
+            //spriteBatch.Draw(PlayerTexture, Position, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         }
 
+        public void UpdateAnimation()
+        {
+            PlayerAnimation.Update();
+        }
         public void DrawBullets(SpriteBatch spriteBatch, Vector3 camera)
         {
             particleEngine.Draw(spriteBatch, camera);

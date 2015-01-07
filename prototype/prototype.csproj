@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Enemy.cs" />
     <Compile Include="Engine\AI\Astar.cs" />
+    <Compile Include="Engine\AnimatedSprite.cs" />
     <Compile Include="Engine\AssetManager.cs" />
     <Compile Include="Engine\Atlas.cs" />
     <Compile Include="Engine\Particle.cs" />
@@ -89,6 +90,7 @@
       <HintPath>$(MSBuildExtensionsPath)\..\MonoGame\v3.0\Assemblies\WindowsGL\Lidgren.Network.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="Tao.Sdl">
       <HintPath>$(MSBuildExtensionsPath)\..\MonoGame\v3.0\Assemblies\WindowsGL\Tao.Sdl.dll</HintPath>
     </Reference>
@@ -132,6 +134,9 @@
     </Content>
     <Content Include="Content\mrspy1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\mrspy2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\orange.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

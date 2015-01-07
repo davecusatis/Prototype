@@ -45,6 +45,15 @@ namespace prototype
             : base()
         {
             graphics = new GraphicsDeviceManager(this);
+
+            // todo fix windows gl full screen
+            //var screen = System.Windows.Forms.Screen.AllScreens[0];
+            //Window.IsBorderless = true;
+            //System.Windows.Forms.Form form = (System.Windows.Forms.Form)System.Windows.Forms.Control.FromHandle(Window.Handle);
+            ////form.Location = new System.Drawing.Point(0, 0);
+            //graphics.PreferredBackBufferWidth = screen.Bounds.Width;
+            //graphics.PreferredBackBufferHeight = screen.Bounds.Height;
+
             Content.RootDirectory = "Content";
         }
 
@@ -65,7 +74,7 @@ namespace prototype
             
             //region = new Region("Demo", new TmxMap("../../../Content/demo.tmx"), this.Content, new TCWorld());
             region = new Region("Demo", new TmxMap("demo.tmx"), this.Content, new TCWorld());
-            
+
             base.Initialize();
         }
 
@@ -84,16 +93,16 @@ namespace prototype
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Vector2 playerPos = new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X, GraphicsDevice.Viewport.TitleSafeArea.Y + GraphicsDevice.Viewport.TitleSafeArea.Height / 2);
             //player.Initialize(Content.Load<Texture2D>("mrspy.bmp"), Content.Load<Texture2D>("red"), playerPos, this.Content);
-            player.Initialize(Content.Load<Texture2D>("mrspy1"), Content.Load<Texture2D>("red"), region.PlayerSpawn, this.Content);
+            player.Initialize(Content.Load<Texture2D>("mrspy1"), Content.Load<Texture2D>("red"), region.PlayerSpawn, this.Content, Content.Load<Texture2D>("mrspy2"));
             region.World.AddRect(player.playerRect);
             region.player = player;
+
+            // audio
             SoundEffect song = Content.Load<SoundEffect>("Boss_GENERIC.wav");
             SoundEffectInstance seInstance = song.CreateInstance();
             seInstance.IsLooped = true;
             seInstance.Play();
         }
-
-       
 
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
@@ -111,7 +120,7 @@ namespace prototype
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || currentKeyState.IsKeyDown(Keys.Escape))
                 Exit();
            
             // TODO: Add your update logic here
@@ -127,6 +136,7 @@ namespace prototype
             player.Update();
             UpdatePlayer(gameTime);
             UpdateEnemies(gameTime);
+
             base.Update(gameTime);
         }
 

@@ -1,32 +1,24 @@
 todo for some sort of demo
 
 Gameplay:
-// CRUCIAL 
-enemies - pathfinding
-
-
 gunz - tweak, refactor particle engine, particle collisions
-
-// LONGER TERM
+enemies - realism 
+animation - enemy animation, player animation done
 ReGIONZ refactor
 
-// LONGERER...ER TERM
-tweaks and modifications
-
-
 design:
+character concepts and environment concepts(in progress)
+
 character assets
 level assets
 level design for prologue
 
 story:
 copy storyboard for prologue onto goog dox
-snowball fight child arc
+snowball fight child arc, sports arc
 
 bugs:
-
 MonoTinySpace - collision doesn't happen when moving in the same direction
-
 p -> e -> = no collide
 
 website:
