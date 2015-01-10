@@ -30,14 +30,14 @@ namespace prototype
             get { return PlayerTexture.Height; }
         }
 
-        public void Initialize(Texture2D texture, Texture2D bullet, Vector2 pos, ContentManager content, Texture2D Animation)
+        public void Initialize(Texture2D texture, Texture2D bullet, Vector2 pos, ContentManager content, Texture2D Animation, TCWorld World)
         {
             List<Texture2D> bulletList = new List<Texture2D>();
             bulletList.Add(bullet);
             playerRect = new TCRectangle(pos, Vector2.Zero, texture.Width, texture.Height, 1);
             PlayerTexture = AssetManager.removeTransparentBG(texture);
             Position = pos;
-            particleEngine = new ParticleEngine(bulletList, pos);
+            particleEngine = new ParticleEngine(bulletList, pos, World);
             Active = true;
             Health = 100;
             PlayerAnimation = new AnimatedSprite(AssetManager.removeTransparentBG(Animation), 2, 9);

@@ -88,12 +88,13 @@ namespace prototype
             particleTextures.Add(Content.Load<Texture2D>("red"));
             particleTextures.Add(Content.Load<Texture2D>("darkorange"));
             particleTextures.Add(Content.Load<Texture2D>("orange"));
-            particleEngine = new ParticleEngine(particleTextures, new Vector2((float)((13.5f))*32, (float)((22.5f))*32));
+            particleEngine = new ParticleEngine(particleTextures, new Vector2((float)((13.5f))*32, (float)((22.5f))*32), region.World);
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Vector2 playerPos = new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X, GraphicsDevice.Viewport.TitleSafeArea.Y + GraphicsDevice.Viewport.TitleSafeArea.Height / 2);
             //player.Initialize(Content.Load<Texture2D>("mrspy.bmp"), Content.Load<Texture2D>("red"), playerPos, this.Content);
-            player.Initialize(Content.Load<Texture2D>("mrspy1"), Content.Load<Texture2D>("red"), region.PlayerSpawn, this.Content, Content.Load<Texture2D>("mrspy2"));
+            player.Initialize(Content.Load<Texture2D>("mrspy1"), Content.Load<Texture2D>("red"), 
+                region.PlayerSpawn, this.Content, Content.Load<Texture2D>("mrspy2"), region.World);
             region.World.AddRect(player.playerRect);
             region.player = player;
 

@@ -137,7 +137,7 @@ namespace prototype.Engine
                                 {
                                     Enemy enemy;
                                     Vector2 EnemyPos = new Vector2(tile.X * tilesets[i].ElementWidth, tile.Y * tilesets[i].ElementHeight - tilesets[i].ElementHeight);
-                                    enemy = new Enemy(enemyTexture, EnemyPos, ContentMgr);
+                                    enemy = new Enemy(enemyTexture, EnemyPos, ContentMgr, World);
                                     World.AddRect(enemy.EnemyRect);
                                     EnemyList.Add(enemy);
                                     
@@ -204,6 +204,11 @@ namespace prototype.Engine
                 player.UpdateAnimation();
             }
             PlayerAnimationCount++;
+        }
+
+        public void MoveBullets(Particle p)
+        {
+            World.MoveObject(p, p.velocity);
         }
 
         public void Reconstruction(Enemy e)

@@ -13,7 +13,7 @@ namespace prototype.Engine.MonoTinySpace
         private const float MINESCULE_TIME = 0.0000001f;
 
         public List<TCRectangle> RectangleList;
-
+        
         public TCWorld()
         {
             RectangleList = new List<TCRectangle>();
@@ -164,6 +164,47 @@ namespace prototype.Engine.MonoTinySpace
             p.Position = p.playerRect.Position;
         }
 
+        public void MoveObject(Particle p, Vector2 velocity)
+        {
+            p.ParticleRect.Position = p.position;
+            p.ParticleRect.Velocity = velocity;
+            double minT = TIMESTEP;
+            float t = TIMESTEP;
+            Vector2 mvA = new Vector2(0, 0);
+            Vector2 mvB = new Vector2(0, 0);
+            double ttc = 0.0;
+            Vector2 minMV = new Vector2(0, 0);
+            TCRectangle colRect = new TCRectangle();
+
+            while (t > MINESCULE_TIME)
+            {
+
+                minMV = new Vector2(0, 0);
+                minT = t;
+                foreach (var rect in RectangleList)
+                {
+                    if (BoxToBoxCollide(p.ParticleRect, rect, t, ref mvA, ref mvB, ref ttc))
+                    {
+                        if (ttc < minT)
+                        {
+                            colRect = rect;
+                            minT = ttc;
+                            minMV = mvA;
+                        }
+                    }
+                }
+
+                minT -= MINESCULE_TIME;
+                if (minT < 0) minT = 0;
+
+                p.ParticleRect.Position += p.ParticleRect.Velocity * (float)minT;
+                p.ParticleRect.Velocity += minMV;
+
+                t -= (float)minT;
+            }
+
+            p.position = p.ParticleRect.Position;
+        }
 
         /// <summary>
         /// 

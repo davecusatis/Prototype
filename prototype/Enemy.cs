@@ -51,7 +51,7 @@ namespace prototype
             }
         }
 
-        public Enemy(Texture2D enemyTexture, Vector2 position, ContentManager Content)
+        public Enemy(Texture2D enemyTexture, Vector2 position, ContentManager Content, TCWorld world)
         {
             EnemyTexture = AssetManager.removeTransparentBG(enemyTexture);
             Position = position;
@@ -63,7 +63,7 @@ namespace prototype
             particleTextures.Add(Content.Load<Texture2D>("red"));
             particleTextures.Add(Content.Load<Texture2D>("darkorange"));
             particleTextures.Add(Content.Load<Texture2D>("orange"));
-            ParticleEngine = new ParticleEngine(particleTextures, new Vector2((float)((13.5f)) * 32, (float)((22.5f)) * 32));
+            ParticleEngine = new ParticleEngine(particleTextures, new Vector2((float)((13.5f)) * 32, (float)((22.5f)) * 32), world);
             EnemyMoveSpeed = 20.0f;
 
         }

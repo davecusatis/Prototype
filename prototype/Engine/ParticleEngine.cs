@@ -8,12 +8,14 @@ using prototype.Engine.MonoTinySpace;
 
 namespace prototype.Engine
 {
-    public class ParticleEngine
+    class ParticleEngine
     {
         private Random random;
         private List<Particle> particles;
         private List<Texture2D> textures;
+        private TCWorld World;
         private int totalParticles = 5;
+
         public int ParticleCount
         {
             get
@@ -24,12 +26,12 @@ namespace prototype.Engine
         //public TCWorld World;
         public Vector2 emitterLocation { get; set; }
 
-        public ParticleEngine(List<Texture2D> texs, Vector2 loc)
+        public ParticleEngine(List<Texture2D> texs, Vector2 loc, TCWorld world)
         {
             emitterLocation = loc;
-            this.textures = texs;
-            this.particles = new List<Particle>();
-           // World = world;
+            textures = texs;
+            particles = new List<Particle>();
+            World = world;
             random = new Random();
         }
 
@@ -58,16 +60,16 @@ namespace prototype.Engine
             switch (dir)
             {
                 case Direction.Up:
-                    velocity = new Vector2(0, -5);
+                    velocity = new Vector2(0, -100);
                     break;
                 case Direction.Down:
-                    velocity = new Vector2(0, 5);
+                    velocity = new Vector2(0, 100);
                     break;
                 case Direction.Left:
-                    velocity = new Vector2(-5, 0);
+                    velocity = new Vector2(-100, 0);
                     break;
                 case Direction.Right:
-                    velocity = new Vector2(5, 0);
+                    velocity = new Vector2(100, 0);
                     break;
             }
 
@@ -104,11 +106,11 @@ namespace prototype.Engine
             for (int i = 0; i < particles.Count; i++)
             {
                 particles[i].Update();
+                World.MoveObject(particles[i], particles[i].velocity);
                 if (particles[i].timeToLive <= 0)
                 {
                     particles.RemoveAt(i);
                     i--;
-
                 }
             }
         }

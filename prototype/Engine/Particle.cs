@@ -36,9 +36,8 @@ namespace prototype.Engine
         public void Update()
         {
             timeToLive--;
-            position += velocity;
-            
-            angle += angularVelocity;
+            //position += velocity;
+            //angle += angularVelocity;
         }
 
         public void Draw(SpriteBatch spriteBatch)
